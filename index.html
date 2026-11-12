@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="theme-color" content="#FBF6EE">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Our Wedding</title>
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:wght@500;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#3B2A2A;--bg:#FBF6EE;--gold:#B8923A;--blush:#F8DCCF;--sage:#6B7B4B;--olive:#5E6B3F;--coral:#E58F7C}
+*{box-sizing:border-box;margin:0}
+html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--ink);font-family:Inter,system-ui,sans-serif}
+#app,.sc{position:fixed;inset:0}
+#app{background:radial-gradient(120% 90% at 50% 0%,#fff,var(--bg) 55%,#F6E8E2)}
+.sc{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:24px;overflow:hidden;animation:in .9s ease both}
+@keyframes in{from{opacity:0;transform:scale(.97)}to{opacity:1;transform:none}}
+h1{font:700 clamp(30px,6vw,60px)/1.1 "Cormorant Garamond",Georgia,serif;max-width:18ch}
+.big{font-size:clamp(44px,11vw,120px);max-width:none}
+.script{font-family:"Great Vibes",cursive;font-weight:400;color:var(--gold)}
+.small{letter-spacing:.3em;text-transform:uppercase;font-size:13px;opacity:.7;margin-bottom:14px}
+button{font:600 17px Inter,sans-serif;color:#fff;background:var(--gold);border:0;border-radius:999px;padding:14px 34px;margin-top:26px;cursor:pointer;transition:transform .2s}
+button:hover{transform:scale(1.05)}button:focus-visible{outline:3px solid var(--sage);outline-offset:3px}
+.no{background:#fff;color:var(--ink);border:2px solid #B8923A66}
+.no.run{position:fixed;transition:left .28s,top .28s,transform .3s;z-index:20}
+.row{display:flex;gap:16px;flex-wrap:wrap;justify-content:center}.row button{margin:26px 0 0}
+#taunt{min-height:30px;margin-top:18px;color:var(--gold);font-weight:600}
+.petal{position:fixed;top:-30px;width:14px;height:18px;border-radius:70% 0 70% 0;background:var(--blush);opacity:.85;z-index:5;pointer-events:none;animation:fall linear infinite}
+@keyframes fall{to{transform:translate(var(--dx),110vh) rotate(540deg)}}
+/* curtain */
+#cur{position:fixed;inset:0;overflow:hidden;z-index:50;transition:opacity .6s;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;color:#FFF3DC}
+#cur .pn{position:absolute;top:0;bottom:0;width:50.4%;background:repeating-linear-gradient(90deg,#46512c 0,#5E6B3F 22px,#7a8a52 34px,#5E6B3F 46px,#46512c 68px),#5E6B3F;box-shadow:inset 0 0 120px #0006}
+#cur .pn::after{content:"";position:absolute;inset:0;background:linear-gradient(#0000 60%,#0004)}
+#cur .pn.L{left:0}#cur .pn.R{left:49.6%}
+#cur.gone{opacity:0}
+#cur .rod{position:absolute;top:0;left:0;right:0;height:16px;background:linear-gradient(#e6c46a,#B8923A,#8a6a22);box-shadow:0 4px 10px #0005;z-index:2}
+#cur .hint,#cur button{position:relative;z-index:3;transition:opacity .5s}
+#cur.open .hint,#cur.open button{opacity:0}
+#cur .hint{font:400 clamp(40px,10vw,90px)/1.1 "Great Vibes",cursive;color:#F6D98A;text-shadow:0 3px 14px #0007;padding:0 20px}
+#cur .sub{letter-spacing:.3em;text-transform:uppercase;font-size:13px;opacity:.85;margin-bottom:10px;position:relative;z-index:3;transition:opacity .5s}
+#cur.open .sub{opacity:0}
+#cur button{animation:pulse 1.6s infinite;box-shadow:0 8px 24px #0006}
+@keyframes pulse{50%{transform:scale(1.08)}}
+/* opening words */
+.w{opacity:0;animation:rise 1.2s ease both}
+@keyframes rise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+.line{font:500 clamp(20px,4vw,30px)/1.4 "Cormorant Garamond",Georgia,serif;max-width:26ch;margin-top:12px}
+.cl{position:relative;z-index:3;display:flex;flex-direction:column;align-items:center;padding:0 20px}
+.lad{position:relative;width:min(94vw,900px);height:78vh;overflow:hidden;-webkit-mask-image:linear-gradient(transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(transparent,#000 8%,#000 92%,transparent)}
+.rg{display:flex;justify-content:center;padding-bottom:7vh}
+.rg img{display:block;max-width:94%;max-height:66vh;width:auto;height:auto;border:6px solid #fff;border-radius:12px;box-shadow:0 18px 40px #3b2a2a40;background:var(--blush)}
+.trk{position:absolute;left:0;right:0;top:0;will-change:transform}
+.fw{position:relative;display:inline-block;animation:pop .6s both}
+.fr{display:block;max-height:68vh;max-width:min(90vw,560px);border-radius:18px;border:6px solid #fff;box-shadow:0 30px 70px #3b2a2a55;background:#fff}
+.orb{position:relative;width:min(92vmin,720px);height:min(92vmin,720px);display:grid;place-items:center}
+.ring{position:absolute;inset:0;animation:spin 60s linear infinite}.ring.r2{animation-direction:reverse;animation-duration:50s}
+@keyframes spin{to{transform:rotate(360deg)}}
+.pos{position:absolute;left:50%;top:50%;transform:rotate(var(--a)) translateX(var(--R))}
+.chip{display:block;white-space:nowrap;background:#fff;border:1px solid #B8923A55;border-radius:999px;padding:6px 14px;font-size:clamp(12px,2.2vmin,16px);font-weight:600;color:var(--olive);box-shadow:0 4px 12px #3b2a2a1a;animation:unspin 60s linear infinite}
+.r2 .chip{animation-duration:50s;animation-direction:reverse}
+@keyframes unspin{from{transform:translate(-50%,-50%) rotate(calc(-1*var(--a)))}to{transform:translate(-50%,-50%) rotate(calc(-1*var(--a) - 360deg))}}
+.names.mid{position:relative;z-index:2;max-width:44%;font-size:clamp(34px,8vmin,72px)}
+.hearts{font-size:26px;letter-spacing:.4em;margin-top:18px}
+/* envelope */
+.env{position:relative;width:min(86vw,420px);aspect-ratio:7/5;background:#E9D6C4;border-radius:8px;box-shadow:0 30px 60px #3b2a2a33;margin-top:30px}
+.env .ltr{position:absolute;left:6%;right:6%;top:6%;bottom:6%;background:#fff;border-radius:4px;overflow:hidden;transition:transform 1.2s ease .6s}
+.env .ltr img{width:100%;height:100%;object-fit:cover}
+.env .fl{position:absolute;left:0;right:0;top:0;height:60%;background:#DCC4AE;clip-path:polygon(0 0,100% 0,50% 100%);transform-origin:top;transition:transform .8s ease;z-index:3}
+.env .bd{position:absolute;inset:0;background:#EBDAC9;clip-path:polygon(0 100%,50% 38%,100% 100%,100% 0,0 0);z-index:2;pointer-events:none;opacity:0}
+.env.open .fl{transform:rotateX(180deg);z-index:0}.env.open .ltr{transform:translateY(-55%)}
+.seal{position:absolute;left:50%;top:52%;width:62px;height:62px;margin:-31px;border-radius:50%;background:var(--gold);color:#fff;font:400 26px "Great Vibes",cursive;display:grid;place-items:center;z-index:4;cursor:pointer;border:0;padding:0;animation:pulse 1.6s infinite}
+.env.open .seal{opacity:0;pointer-events:none}
+.inv{max-height:70vh;max-width:90vw;border-radius:6px;box-shadow:0 30px 70px #3b2a2a40;animation:pop .8s cubic-bezier(.2,1.3,.3,1) both}
+@keyframes pop{from{transform:scale(.6);opacity:0}to{transform:none;opacity:1}}
+/* welcome */
+.rings{position:relative;width:130px;height:70px;margin-bottom:10px}
+.rings i{position:absolute;top:8px;width:54px;height:54px;border:5px solid var(--gold);border-radius:50%;animation:ring 1.8s ease .3s both}
+.rings i:first-child{left:0;--x:-90px}.rings i:last-child{right:0;--x:90px;border-color:#D9B65F}
+@keyframes ring{from{transform:translateX(var(--x));opacity:0}to{transform:none;opacity:1}}
+.names{font:400 clamp(54px,13vw,130px)/1.05 "Great Vibes",cursive;color:var(--gold);animation:pop 1.2s ease .8s both}
+.names span{color:var(--ink);font-size:.6em}
+.fade{animation:in 1.4s ease 1.6s both}
+/* gallery */
+.frame{position:relative;width:min(80vw,340px);aspect-ratio:3/4;border-radius:170px 170px 14px 14px;overflow:hidden;border:6px solid #fff;box-shadow:0 25px 60px #3b2a2a40;background:var(--blush)}
+.frame img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 1s}.frame img.on{opacity:1}
+.nv{position:absolute;top:50%;width:44px;height:44px;margin-top:-22px;padding:0;border-radius:50%;background:#ffffffcc;color:var(--ink);font-size:24px;z-index:3}
+/* video + chat */
+.vw{position:relative;width:min(92vw,900px)}video{width:100%;max-height:76vh;border-radius:18px;background:#000;box-shadow:0 30px 70px #3b2a2a55}
+.tag{position:absolute;left:14px;top:14px;z-index:2;background:#fffc;padding:7px 16px;border-radius:999px;font-weight:600}
+.ph{width:min(90vw,640px);padding:50px 24px;border:2px dashed #B8923A88;border-radius:20px}
+.chat{width:min(92vw,520px);max-height:68vh;overflow:auto;border-radius:22px;background:#F6E8E2;box-shadow:0 30px 70px #3b2a2a33;text-align:left;animation:in .8s both}
+.ch{display:flex;gap:12px;align-items:center;padding:12px 16px;background:#fff}
+.av{display:grid;place-items:center;width:42px;height:42px;border-radius:50%;background:var(--blush);color:var(--gold);font:700 20px "Cormorant Garamond",serif}
+.ch b{display:block}.ch small{font-size:12px;color:#4a9a6a}
+.cb{padding:16px 14px 20px;display:flex;flex-direction:column;gap:7px;min-height:150px}
+.bub{align-self:flex-start;max-width:88%;background:#fff;border-radius:16px 16px 16px 4px;padding:10px 14px;font-size:clamp(15px,2.4vw,19px);line-height:1.45;animation:pop .35s both}
+.bub time{display:block;text-align:right;font-size:11px;opacity:.55;margin-top:3px}
+.ty{align-self:flex-start;background:#fff;border-radius:16px 16px 16px 4px;padding:13px 14px;display:flex;gap:4px}
+.ty i{width:7px;height:7px;border-radius:50%;background:#bbb;animation:b 1s infinite}.ty i:nth-child(2){animation-delay:.15s}.ty i:nth-child(3){animation-delay:.3s}
+@keyframes b{50%{transform:translateY(-4px)}}
+.wall{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;max-width:760px;max-height:46vh;overflow:hidden;margin-top:24px}
+.wall span{background:#fff;color:var(--olive);font-weight:600;border:1px solid #B8923A55;border-radius:999px;padding:6px 14px;font-size:14px;animation:pop .5s both}
+</style></head><body><div id="app"></div>
+<script>
+/* ===== EDIT ME ===== */
+const C={
+  groom:"Ayomide", bride:"Oluwadamilola", date:"14th November 2026",   // e.g. bride:"Victoria", groom:"Samuel", date:"12 November 2026"
+  invitation:"The Wedding Invitation.jpg",
+  photos:["Couples Picture.jpg","Couples 2.jpg","picture.JPEG","pictures.JPEG","picturessss.JPEG","pictureeeeees5.JPEG","last picture.JPEG"],
+  videos:[{n:"Zikora",f:"Zikora.mp4"},{n:"Sogo Banwo",f:"Sogo Banwo.mp4"},{n:"Toluwase",f:"Toluwase.mp4"},{n:"Sammie",f:"Sammie.mp4"},{n:"Pelumi",f:"Pelumi.mp4",g:"f"},{n:"Lanre",f:"Lanre.mp4"},{n:"Dami Asiwaju",f:"Dami Asiwaju.mp4"},{n:"Bright",f:"Bright.mp4"},{n:"Adelabi",f:"Adelabi.mp4"},{n:"Pelumi",f:"Pelu.mp4",g:"m"}],
+  // Ladies: s = their video file name (extension optional). Guys: videos above. Add g:"f" or g:"m" to any entry to change which side it shuffles with.
+  texts:[{n:"Victoria",s:"Victoria",m:``},{n:"Oluwatoyin",s:"Oluwatoyin",m:``},{n:"Oluwatobiloba",s:"Oluwatobiloba",m:``},{n:"Nifesimi",s:"Nifesimi",m:``},{n:"Martha",s:"Martha",m:``},{n:"Margaret",s:"Margaret",m:``},{n:"IfeOluwa",s:"IfeOluwa",m:``},{n:"Ifemayowa",s:"Ifemayowa",m:``},{n:"Hikmat",s:"Hikmat",m:``},{n:"Francisca",s:"Francisca",m:``},{n:"Florence",s:"Florence",m:``},{n:"Benedicta",s:"Benedicta",m:``}],
+  ask:"Want to hear from the people who love you?",
+  music:"music.mp3",   // put your song in the same folder with this name
+  closeTop:"Congratulations",
+  closeLines:["Wishing you a lifetime of love, laughter and joy.","With all our love, your friends and family."],
+  // Curtain entry: words that appear after the curtain opens
+  curtainTop:"A surprise for you",
+  curtainWords:["Two hearts, one beautiful love story.","Your people gathered love, laughter and joy, just for you."]
+};
+/* =================== */
+const slide=(cur,open)=>[['.pn.L',-101],['.pn.R',101]].map(([q,x])=>cur.querySelector(q).animate(open?[{transform:'translateX(0%)'},{transform:`translateX(${x}%)`}]:[{transform:`translateX(${x}%)`},{transform:'translateX(0%)'}],{duration:2600,easing:'cubic-bezier(.65,0,.3,1)',fill:'forwards'}));
+let M=null;const vol=v=>{if(M)M.volume=v};
+const $=s=>document.querySelector(s),app=$('#app'),sleep=ms=>new Promise(r=>setTimeout(r,ms)),rnd=(a,b)=>a+Math.random()*(b-a);
+const scene=h=>{app.innerHTML='<div class="sc">'+h+'</div>'};
+const btn=l=>new Promise(r=>{const b=document.createElement('button');b.textContent=l;b.onclick=()=>{b.remove();r()};app.firstElementChild.appendChild(b)});
+const PH=n=>'data:image/svg+xml;charset=utf-8,'+encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 400"><rect width="300" height="400" fill="#F3D9D3"/><text x="150" y="190" fill="#B8923A" font-family="sans-serif" font-size="16" text-anchor="middle">Add this photo:</text><text x="150" y="216" fill="#3B2A2A" font-family="sans-serif" font-size="12" text-anchor="middle">${n.replace(/&/g,'&amp;')}</text></svg>`);
+const img=(s,c)=>`<img ${c?`class="${c}" `:''}src="${encodeURI(s)}" onerror="this.onerror=null;this.src=PH(this.getAttribute('alt'))" alt="${s}">`;
+const names=()=>`${C.bride} <span>&amp;</span> ${C.groom}`;
+function petals(){for(let i=0;i<20;i++){const p=document.createElement('div');p.className='petal';p.style.cssText=`left:${rnd(0,100)}%;--dx:${rnd(-120,120)}px;animation-duration:${rnd(8,16)}s;animation-delay:${-rnd(0,14)}s;transform:scale(${rnd(.7,1.4)})`;document.body.appendChild(p)}}
+async function intro(){
+  scene('');
+  const cur=document.createElement('div');cur.id='cur';
+  cur.innerHTML=`<div class="pn L"><div class="rod"></div></div><div class="pn R"><div class="rod"></div></div><p class="sub">A celebration of love</p><div class="hint">${C.curtainTop}</div><button id="tap">Tap to open the curtain</button>`;
+  document.body.appendChild(cur);
+  await new Promise(r=>$('#tap').onclick=r);
+  try{M=new Audio(encodeURI(C.music));M.loop=true;M.volume=.35;M.play().catch(()=>{})}catch(e){}
+  cur.classList.add('open');slide(cur,true);petals();
+  await sleep(1200);
+  const L=C.curtainWords.map((t,i)=>`<p class="line w" style="animation-delay:${1.6+i*1.2}s">${t}</p>`).join('');
+  scene(`<p class="small w" style="animation-delay:.2s">With love</p><div class="names" style="animation-delay:.5s">${names()}</div>${L}<div class="hearts w" style="animation-delay:${1.8+C.curtainWords.length*1.2}s">&#10084; &#10084; &#10084;</div>`);
+  setTimeout(()=>cur.classList.add('gone'),2300);setTimeout(()=>cur.remove(),3000);
+  await sleep((2.4+C.curtainWords.length*1.2)*1000);
+  await btn("Let's begin");
+}
+async function envelope(){
+  scene(`<p class="small">Remember this?</p><h1>We came prepared to honour your invitation</h1><div class="env" id="env"><div class="ltr">${img(C.invitation)}</div><div class="fl"></div><button class="seal" id="seal">${(C.bride[0]||'')+'&'+(C.groom[0]||'')}</button></div>`);
+  await sleep(3200);$('#env').classList.add('open');await sleep(2400);
+  scene(`${img(C.invitation,'inv')}`);await btn('Continue');
+}
+async function welcome(){
+  scene(`<div class="rings"><i></i><i></i></div><p class="small fade">Celebrating the wedding of</p><div class="names">${names()}</div><p class="fade" style="margin-top:14px;font:700 24px 'Cormorant Garamond',serif">${C.date}</p>`);
+  await sleep(6500);
+}
+async function gallery(){
+  scene(`<p class="small">Just the two of you</p><div class="lad" id="lad"><div class="trk" id="trk">${C.photos.map(p=>`<div class="rg">${img(p)}</div>`).join('')}</div></div>`);
+  const lad=$('#lad'),trk=$('#trk');
+  await Promise.race([Promise.all([...trk.querySelectorAll('img')].map(m=>m.complete?0:new Promise(r=>{m.onload=m.onerror=r}))),sleep(6000)]);
+  const vh=lad.clientHeight,H=trk.scrollHeight;
+  const a=trk.animate([{transform:`translateY(${vh*.9}px)`},{transform:`translateY(${-(H-vh*.15)}px)`}],{duration:C.photos.length*4200,easing:'linear',fill:'forwards'});
+  await new Promise(r=>a.onfinish=r);await sleep(600);await btn('Continue');
+}
+function ask(q){return new Promise(res=>{
+  scene(`<h1>${q}</h1><div class="row"><button id="yes">Yes</button><button id="no" class="no">No</button></div><p id="taunt"></p>`);
+  const y=$('#yes'),no=$('#no'),t=$('#taunt'),T=["Hmm… that button is shy.","Oops. It moved.","Are you sure?","We know, but you have to listen…","They worked so hard on this.","The No button has left the chat.","Just press Yes. You know you want to."];let n=0,last=0;
+  const dodge=e=>{e.preventDefault();if(Date.now()-last<400)return;last=Date.now();
+    if(!no.classList.contains('run')){const r=no.getBoundingClientRect();no.style.left=r.left+'px';no.style.top=r.top+'px';no.classList.add('run');void no.offsetWidth}
+    no.style.left=rnd(12,Math.max(13,innerWidth-no.offsetWidth-12))+'px';no.style.top=rnd(70,Math.max(71,innerHeight-no.offsetHeight-12))+'px';
+    t.textContent=T[Math.min(n,T.length-1)];n++;if(n>3){no.style.transform=`scale(${Math.max(.5,1-n*.07)})`;y.style.transform=`scale(${Math.min(1.5,1+n*.07)})`}};
+  ['pointerenter','pointerdown','click'].forEach(e=>no.addEventListener(e,dodge));y.onclick=()=>res()})}
+const EXL=b=>/\.\w{2,4}$/.test(b)?[b]:['jpg','jpeg','JPG','JPEG','png','PNG','webp','jfif'].map(e=>b+'.'+e);
+function nx(el){const L=EXL(el.dataset.b),i=+el.dataset.i+1;if(i<L.length){el.dataset.i=i;el.src=encodeURI(L[i])}else{el.onerror=null;el.src=PH(el.dataset.b)}}
+const frameImg=b=>`<img class="fr" data-b="${b}" data-i="0" src="${encodeURI(EXL(b)[0])}" alt="${b}" onerror="nx(this)">`;
+function playFrame(b,label,last){scene(`<div class="fw"><div class="tag">${label}</div>${frameImg(b)}</div>`);return btn(last?'Continue':'Next')}
+const EXV=b=>/\.\w{2,4}$/.test(b)?[b]:['mp4','MP4','mov','MOV','m4v','webm'].map(e=>b+'.'+e).concat([b]);
+function playVid(src,label){return new Promise(res=>{
+  const L=EXV(src);let k=0;
+  scene(`<div class="vw"><div class="tag">${label}</div><video playsinline controls src="${encodeURI(L[0])}"></video></div>`);
+  const v=$('video');let d=0;vol(.04);const fin=()=>{if(!d){d=1;vol(.35);res()}};v.onended=fin;
+  v.onerror=()=>{if(++k<L.length){v.src=encodeURI(L[k]);v.play().catch(()=>{});return}scene(`<div class="ph">Add <b>${src}</b> in the same folder as this page</div>`);btn('Continue').then(fin)};v.play().catch(()=>{})})}
+async function chat(name,msg,last){
+  let parts=msg.trim().split(/\n+/).map(x=>x.trim()).filter(Boolean);if(parts.length===1)parts=msg.replace(/\s+/g,' ').split(/(?<=[.!?])\s+/);
+  scene(`<div class="chat"><div class="ch"><div class="av">${name[0]}</div><div><b>${name}</b><small id="st">online</small></div></div><div class="cb" id="cb"></div></div>`);
+  const cb=$('#cb'),st=$('#st'),tm=new Date().toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'});await sleep(600);
+  for(let i=0;i<parts.length;i++){st.textContent='typing…';cb.insertAdjacentHTML('beforeend','<div class="ty"><i></i><i></i><i></i></div>');$('.chat').scrollTop=9999;
+    await sleep(Math.min(1600,400+parts[i].length*12));cb.querySelector('.ty').remove();
+    cb.insertAdjacentHTML('beforeend',`<div class="bub">${parts[i]}${i==parts.length-1?`<time>${tm} ✓✓</time>`:''}</div>`);$('.chat').scrollTop=9999;await sleep(500)}
+  st.textContent='online';await btn(last?'Continue':'Next')}
+const UP=n=>[`${n} has a few words for you`,`A message from ${n}`,`${n} came with love`,`${n} wants to say something`,`Next, ${n}`],HY=["Ready…","Hold your heart…","Smile first…","Wait for it…","Breathe in…"],GO=["Here it comes!","Now!","Let's go!","Play it!","Here we go!"];
+async function finale(all){
+  all=all.filter(n=>!/^a special wish$/i.test(n));
+  const one=all.length<=8,A=[],B=[];all.forEach((n,i)=>(one||i%2==0?A:B).push(n));
+  const ring=(L,R,c)=>`<div class="ring ${c}">${L.map((n,i)=>`<div class="pos" style="--a:${i*360/L.length}deg;--R:${R}"><i class="chip">${n}</i></div>`).join('')}</div>`;
+  scene(`<div class="orb">${ring(A,one?'min(36vmin,280px)':'min(43vmin,340px)','')}${B.length?ring(B,'min(27vmin,210px)','r2'):''}<div class="names mid">${names()}</div></div>`);
+  await sleep(11000);
+  const cur=document.createElement('div');cur.id='cur';cur.innerHTML='<div class="pn L"><div class="rod"></div></div><div class="pn R"><div class="rod"></div></div>';
+  document.body.appendChild(cur);slide(cur,false);
+  await sleep(3000);
+  cur.insertAdjacentHTML('beforeend',`<div class="cl"><p class="sub w">${C.closeTop}</p><div class="hint w" style="animation-delay:.5s">${names()}</div>${C.closeLines.map((t,i)=>`<p class="line w" style="animation-delay:${1.4+i*1.2}s">${t}</p>`).join('')}<div class="hearts w" style="animation-delay:${1.6+C.closeLines.length*1.2}s">&#10084; &#10084; &#10084;</div></div>`);
+  await sleep((2.8+C.closeLines.length*1.2)*1000);
+  const b=document.createElement('button');b.textContent='Watch again';b.onclick=()=>location.reload();cur.querySelector('.cl').appendChild(b)}
+async function run(){
+  await intro();await envelope();await welcome();
+  scene(`<h1>The people who love you have something to say…</h1>`);await sleep(2800);
+  await ask(C.ask);scene(`<h1 class="script big">Good choice.</h1>`);await sleep(1600);
+  const all=[...C.videos.filter(v=>!v.last).map(v=>({...v,g:v.g||'m'})),...C.texts.filter(t=>t.s||(t.m&&t.m.trim())).map(t=>({...t,g:t.g||'f'}))];
+  const Mq=all.filter(x=>x.g==='m'),Wq=all.filter(x=>x.g!=='m');
+  const mix=[...Wq.map((x,i)=>[(i+.5)/Wq.length,0,x]),...Mq.map((x,i)=>[(i+.5)/Mq.length,1,x])].sort((a,b)=>a[0]-b[0]||a[1]-b[1]).map(a=>a[2]);
+  const order=[...mix,...C.videos.filter(v=>v.last)],mid=Math.floor(order.length/2);
+  for(let i=0;i<order.length;i++){const w=order[i];
+    if(i===mid){scene(`<h1>Look at the two of you…</h1>`);await sleep(2600);await gallery();scene(`<h1 class="script big">More love coming your way…</h1>`);await sleep(2200)}
+    scene(`<p class="small">${i?'Up next':'First up'}</p><h1>${UP(w.n)[i%5]}</h1>`);await sleep(2300);
+    scene(`<h1 class="big script">${HY[i%5]}</h1>`);await sleep(1700);
+    scene(`<h1 class="big script" style="color:var(--ink)">${GO[i%5]}</h1>`);await sleep(800);
+    const lst=i===order.length-1;
+    if(w.f||w.s)await playVid(w.f||w.s,w.n);else await chat(w.n,w.m,lst)}
+  await finale([...new Set(order.map(w=>w.n))]);
+}
+run();
+</script></body></html>
