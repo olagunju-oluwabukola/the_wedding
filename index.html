@@ -114,7 +114,7 @@ const C={
   curtainTop:"A surprise for you",
   curtainWords:["Two hearts, one beautiful love story.","Your people gathered love, laughter and joy, just for you."]
 };
-/* =================== */
+
 const slide=(cur,open)=>[['.pn.L',-101],['.pn.R',101]].map(([q,x])=>cur.querySelector(q).animate(open?[{transform:'translateX(0%)'},{transform:`translateX(${x}%)`}]:[{transform:`translateX(${x}%)`},{transform:'translateX(0%)'}],{duration:2600,easing:'cubic-bezier(.65,0,.3,1)',fill:'forwards'}));
 let M=null;const vol=v=>{if(M)M.volume=v};
 const $=s=>document.querySelector(s),app=$('#app'),sleep=ms=>new Promise(r=>setTimeout(r,ms)),rnd=(a,b)=>a+Math.random()*(b-a);
